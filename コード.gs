@@ -87,6 +87,7 @@ function doGet() {
             arr +="%25u"+  ("00"+title.charCodeAt(i).toString(16)).slice(-4);
           }
         }
+    
      if(kaigai=="YYYY-MM-DDTHH:mm:00+08:00"){
      html += "<tr><td>"+ hyperlink(neta + encodeURIComponent(titleraw)+","+moment(stat*10000-3600000).format(kaigai)+","+endst+dformat,titleraw) +"</td>"
     html+= "<td>"+ hyperlink( url +stat +"," +arr,moment(stat*10000-3600000).format(kaigai)) +"</td>";
@@ -107,9 +108,10 @@ function doGet() {
             arr +="%25u"+  ("00"+title2.charCodeAt(i).toString(16)).slice(-4);
           }
         }
+  }
     if(kaigai=="YYYY-MM-DDTHH:mm:00+08:00"){
       
-      if(end!="NaN"){
+  if(end.toString().match(/^\d+$/)){
       html += "<td>"+ hyperlink( url +end +"," +arr,moment(end*10000 -3600000).format(kaigai))+" " + hyperlink(url2.replace(/YYYYMMDDThhmm/,moment(end*10000 -3600000).format("YYYYMMDDTHHmm")).replace("event",title2),"time&date.com") +"</td>";
       }
       else{
@@ -120,7 +122,7 @@ function doGet() {
       }
     }
     else{
-      if(end!="NaN"){
+  if(end.toString().match(/^\d+$/)){
   html += "<td>"+ hyperlink( url +end +"," +arr,moment(end*10000).format(kaigai))+" " + hyperlink(url2.replace(/YYYYMMDDThhmm/,moment(end*10000).format("YYYYMMDDTHHmm")).replace("event",title2),"time&date.com") +"</td>";
       }
       else{
@@ -130,7 +132,7 @@ function doGet() {
         html+= "<td>"+ hyperlink(wtime +"#"+encodeURIComponent(titleraw)+","+encodeURIComponent(moment(stat*10000).format(kaigai)) +","+encodeURIComponent(moment(end*10000).format(kaigai))+dformat.replace(/,MM.+$/,"")+","+timest,"view worldtime," +timest) +"</td>";
 
     }
-  }
+  //}
     html += "</tr>";
   }  
   
